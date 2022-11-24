@@ -1,68 +1,57 @@
 import javax.swing.JOptionPane;
 
 public class Main {
-
     public static void main(String[] args) {
         int opcion = 0, elemento = 0;
-        Pilas pila = new Pilas();
+        Colas cola = new Colas();
         do{
             try{
-                opcion = Integer.parseInt(JOptionPane.showInputDialog(null, "1. Empujar un elemento en la Pila\n" +
-                                "2. Sacar un elemento en la Pila\n" +
-                                "3. ¿La pila esta vacia?\n" +
-                                "4. ¿Que elemento esta en la cima?\n" +
-                                "5. Tamaño de la pila\n" +
-                                "6. Vaciar pila\n" +
-                                "7. Salir\n" +
-                                "¿Qué deseas hacer?", "Menu",
-                        JOptionPane.INFORMATION_MESSAGE));
+                opcion = Integer.parseInt(JOptionPane.showInputDialog(null,
+                        "1. Insertar un elemento en la cola\n" +
+                                "2. Quitar un elemento de la cola\n" +
+                                "3. ¿La Cola esta vacia?\n" +
+                                "4. Elemento ubicado al Inicio de la Cola\n" +
+                                "5.Tamaño de la cola\n" +
+                                "6. Salir\n", "Menu", JOptionPane.QUESTION_MESSAGE));
                 switch(opcion){
                     case 1:
-                        elemento = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingresa el elemento a empujar en la Pila", "Solicitando elemento", JOptionPane.INFORMATION_MESSAGE));
-                        pila.empujar(elemento);
+                        elemento = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingresa el elemento a Insertar", "Solicitando elemento", JOptionPane.INFORMATION_MESSAGE));
+                        cola.insertar(elemento);
                         break;
                     case 2:
-                        if(!pila.estaVacia()){
-                            JOptionPane.showMessageDialog(null, "El elemento obtenido es : " + pila.sacar(), "Obteniendo datos de la Pila", JOptionPane.INFORMATION_MESSAGE);
-                        } else {
-                            JOptionPane.showMessageDialog(null, "La Pila esta llena", "Pila llena", JOptionPane.INFORMATION_MESSAGE);
+                        if(!cola.estaVacia()){
+                            JOptionPane.showMessageDialog(null, "El elemento atendido es : " + cola.quitar(), "Quitando Elementos de la cola", JOptionPane.INFORMATION_MESSAGE);
+                        }else{
+                            JOptionPane.showMessageDialog(null, "La cola está vacía", "Cola vacía", JOptionPane.INFORMATION_MESSAGE);
                         }
                         break;
                     case 3:
-                        if(pila.estaVacia()){
-                            JOptionPane.showMessageDialog(null, "La Pila esta vacia", "Pila vacia", JOptionPane.INFORMATION_MESSAGE);
-                        } else {
-                            JOptionPane.showMessageDialog(null, "La Pila contiene datos", "Pila sin llenar", JOptionPane.INFORMATION_MESSAGE);
+                        if(cola.estaVacia()){
+                            JOptionPane.showMessageDialog(null, "La cola está vacia", "Cola vacía", JOptionPane.INFORMATION_MESSAGE);
+                        }else{
+                            JOptionPane.showMessageDialog(null, "La cola no está vacía", "Cola  no vacía", JOptionPane.INFORMATION_MESSAGE);
                         }
                         break;
                     case 4:
-                        if(!pila.estaVacia()){
-                            JOptionPane.showMessageDialog(null, "El elemento en la cima es : " + pila.cima(), "Cima", JOptionPane.INFORMATION_MESSAGE);
-                        } else {
-                            JOptionPane.showMessageDialog(null, "La Pila esta vacia", "Pila vacia", JOptionPane.INFORMATION_MESSAGE);
+                        if(!cola.estaVacia()){
+                            JOptionPane.showMessageDialog(null, "El elemento ubicado al inicio de la cola es : " + cola.inicioCola(), "Inicio de la cola", JOptionPane.INFORMATION_MESSAGE);
+                        }else{
+                            JOptionPane.showMessageDialog(null, "La cola está vacía", "Cola vacía", JOptionPane.INFORMATION_MESSAGE);
                         }
                         break;
                     case 5:
-                        JOptionPane.showMessageDialog(null, "El tamaño de la pila es : " + pila.tamañoPila(), "tamaño de la Pila", JOptionPane.INFORMATION_MESSAGE);
+                        JOptionPane.showMessageDialog(null, "El tamaño de la cola es : " + cola.tamañoCola(), "Tamaño de la cola", JOptionPane.INFORMATION_MESSAGE);
                         break;
                     case 6:
-                        if(!pila.estaVacia()){
-                            pila.limpiarPila();
-                            JOptionPane.showMessageDialog(null, "La pila se ha vaciado", "Vaciando Pila", JOptionPane.INFORMATION_MESSAGE);
-                        }else{
-                            JOptionPane.showMessageDialog(null, "La Pila esta vacia", "Pila vacia", JOptionPane.INFORMATION_MESSAGE);
-                        }
-                        break;
-                    case 7:
-                        JOptionPane.showMessageDialog(null, "Aplicacion finalizada", "Fin", JOptionPane.INFORMATION_MESSAGE);
+                        JOptionPane.showMessageDialog(null, "Aplicación finalizada", "Fin", JOptionPane.INFORMATION_MESSAGE);
                         break;
                     default:
-                        JOptionPane.showMessageDialog(null, "Opcion incorrecta", "Error", JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.showMessageDialog(null, "Opción incorrecta", "Error", JOptionPane.ERROR_MESSAGE);
                         break;
                 }
             }catch(NumberFormatException n){
-                JOptionPane.showMessageDialog(null, "Error" + n.getMessage());
+                JOptionPane.showMessageDialog(null, "Error " + n.getMessage());
             }
-        }while(opcion!= 7);
+        }while(opcion!=6);
     }
 }
